@@ -78,17 +78,15 @@ const handleMove = (source, target) => {
   const move = {
     from: `${String.fromCharCode(97 + source.col)}${8 - source.row}`,
     to: `${String.fromCharCode(97 + target.col)}${8 - target.row}`,
-    promotion: "q", // Always promote to queen for simplicity
+    promotion: "q",
   };
 
   const result = chess.move(move);
 
   if (result) {
-    // Move was successful, update the board and notify the server
     socket.emit("move", move);
     renderBoard();
   } else {
-    // Move was invalid, notify the user
     alert("Invalid move. Please try again.");
   }
 };
